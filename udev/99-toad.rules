@@ -1,0 +1,5 @@
+# STLink v2
+SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="3748", GROUP="plugdev", TAG+="uaccess"
+
+# Keithley Model 2110
+SUBSYSTEM=="usbmisc", ATTRS{idVendor}=="05e6", ATTRS{idProduct}=="2110", GROUP="plugdev", TAG+="uaccess"
