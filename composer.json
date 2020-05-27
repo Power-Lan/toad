@@ -1,12 +1,14 @@
 {
     "name": "power-lan/toad",
     "type": "library",
-    "description": "Collection of various train pictures",
+    "description": "Framework for test and program MCU",
     "keywords": [
         "toad",
         "test",
         "stlink",
-        "stm32"
+        "stm32",
+        "openocd",
+        "ttn"
     ],
     "license": "MIT",
     "authors": [

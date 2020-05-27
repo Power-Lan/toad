@@ -21,6 +21,11 @@ trait Registry
       unset($this->registry[$key]);
     }
 
+    function issetRegistry($key)
+    {
+      return isset($this->registry[$key]);
+    }
+
     function resetRegistry()
     {
       $this->registry = array();
