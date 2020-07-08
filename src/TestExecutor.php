@@ -189,10 +189,11 @@ class TestExecutor
                 // Retreive next test
                 $testDescriptor = array_shift($this->pendding);
                 $test = new $testDescriptor['class'];
+                $options = $testDescriptor['options'] ?? [];
 
                 // Execute test
                 $this->start($test->getTitle());
-                $rc = $test->execute($this, $testDescriptor['options']);
+                $rc = $test->execute($this, $options);
                 $this->finish($rc);
                 if ($rc !== true) {
                     return 1;
@@ -209,3 +210,4 @@ class TestExecutor
         return 0;
     }
 }
+
