@@ -64,9 +64,7 @@ class Network
             $request = new Request('GET', $url, $this->headers);
             $response = $this->__exec($request, $timeout);
 
-            $status = $response->getStatusCode();
-            $this->context->info("get: http code $status");
-            if ($status !== 200) {
+            if ($response->getStatusCode() !== 200) {
                 return false;
             }
 
@@ -85,7 +83,7 @@ class Network
 
         try {
             $this->context->info("delete: $url");
-            $request = new Request('DELETE', $url, $this->headers);
+            $request = new Request('DELETE', $url);
             $response = $this->__exec($request, $timeout);
             $rc = $response->getStatusCode();
             if ($rc >= 200 && $rc < 300) {
@@ -116,29 +114,4 @@ class Network
 
         return $json;
     }
-
-    function postJson(string $url, $payload, int $timeout = 30)
-    {
-      $timeout = $timeout ?? $this->timeout;
-
-      try {
-          $this->context->info("post: $url");
-
-          $headers = array_merge($this->headers, [
-              'Content-Type' => 'application/json',
-          ]);
-          $request = new Request('POST', $url, $headers, json_encode($payload));
-          $response = $this->__exec($request, $timeout);
-
-          $status = $response->getStatusCode();
-          $this->context->info("post: http code $status");
-
-          return $response->getBody();
-      } catch (RuntimeException $e) {
-          $this->context->error("post: " . $e->getMessage());
-      }
-
-      return false;
-    }
-
 }

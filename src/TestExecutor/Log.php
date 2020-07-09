@@ -82,11 +82,11 @@ trait Log
         $this->__echo(date('d/m/Y H:i:s') . ' | ' . $str);
     }
 
-    function infoArray($iterable, $showKeys = true, $prefix = ''): void
+    function infoArray($iterable, $showKeys = true): void
     {
         foreach ($iterable as $key => $value) {
             if ($showKeys) {
-                $this->info("$prefix$key = " . print_r($value, true));
+                $this->info("$key = " . print_r($value, true));
             } else {
                 $this->info(print_r($value, true));
             }
