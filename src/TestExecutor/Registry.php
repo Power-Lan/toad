@@ -41,6 +41,6 @@ trait Registry
         }, ARRAY_FILTER_USE_KEY);
       }
 
-      $this->infoArray($reg);
+      $this->infoArray($reg, true, 'registry: ');
     }
 }
