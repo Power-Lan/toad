@@ -13,7 +13,7 @@ trait Application
 
   public function setApplicationContext(string $applicationId, string $applicationEUI, string $accessKey)
   {
-    if (ctype_xdigit($applicationEUI) === false || strlen($applicationEUI) != 8) {
+    if (ctype_xdigit($applicationEUI) === false || strlen($applicationEUI) != 16) {
       throw new Exception('Application EUI must be 8 bytes encoded in an hexadecimal string');
     }
 
@@ -25,7 +25,9 @@ trait Application
   public function getDevices()
   {
     $url = sprintf('%s/applications/%s/devices', $this->getHost(), $this->applicationId);
-    return $this->getJson($url);
+    $response = $this->getJson($url);
+
+    return $response->devices;
   }
 
   public function getDevice($devId)
@@ -42,7 +44,7 @@ trait Application
 
   public function createDevice($devId, $devEUI)
   {
-    if (ctype_xdigit($devEUI) === false || strlen($devEUI) != 8) {
+    if (ctype_xdigit($devEUI) === false || strlen($devEUI) != 16) {
       throw new Exception('Device EUI must be 8 bytes encoded in an hexadecimal string');
     }
 
