@@ -29,7 +29,6 @@ class STInfo implements Toad\TestSuiteInterface
           'descr',
           'pagesize',
           'chipid',
-          'serial'
         );
         foreach ($commands as $command) {
           $rc = $context->execute("st-info --" . $command, false);
