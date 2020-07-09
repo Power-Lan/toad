@@ -27,7 +27,7 @@ trait Application
     $url = sprintf('%s/applications/%s/devices', $this->getHost(), $this->applicationId);
     $response = $this->getJson($url);
 
-    return $response->devices;
+    return $response->devices || [];
   }
 
   public function getDevice($devId)
