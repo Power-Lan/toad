@@ -5,13 +5,15 @@ use Toad;
 
 class TTN extends Toad\Network
 {
-  use TTN\Applications;
+  use TTN\Application,
+      TTN\ApplicationManagement;
 
-  private $region = 'eu';
+  private $region = '';
 
-  public function __construct(Toad\TestExecutor $context)
+  public function __construct(Toad\TestExecutor $context, string $region = 'eu')
   {
     parent::__construct($context);
+    $this->setRegion($region);
   }
 
   public function setRegion(string $region)
