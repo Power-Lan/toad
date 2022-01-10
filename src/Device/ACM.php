@@ -12,8 +12,6 @@ class ACM
     if ($this->fd === false) {
       throw new Exception("Can not open $device");
     }
-
-    stream_set_blocking($this->fd, 0);
   }
 
   function __destruct()
@@ -24,6 +22,8 @@ class ACM
   function readAll() : string
   {
     $out = '';
+
+    stream_set_blocking($this->fd, 0);
 
     while (true) {
       if (feof($this->fd)) {
@@ -37,6 +37,8 @@ class ACM
 
       $out .= $chunk;
     }
+
+    stream_set_blocking($this->fd, 1);
 
     return $out;
   }
@@ -56,3 +58,4 @@ class ACM
     return $out;
   }
 }
+
