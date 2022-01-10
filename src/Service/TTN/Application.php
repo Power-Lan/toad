@@ -32,7 +32,7 @@ trait Application
 
   public function getNsDevice($devId)
   {
-    $url = sprintf('https://%s/api/v3/applications/%s/devices/%s?field_mask=session.dev_addr', $this->getHost(), $this->applicationId, $devId);
+    $url = sprintf('https://%s/api/v3/ns/applications/%s/devices/%s?field_mask=session.dev_addr', $this->getHost(), $this->applicationId, $devId);
     return $this->getJson($url);
   }
   
