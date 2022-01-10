@@ -10,6 +10,7 @@ class TestExecutor
     use TestExecutor\Gpio;
     use TestExecutor\Asserts;
     use TestExecutor\Registry;
+    use TestExecutor\UserInput;
 
     private $config = array();
     private $deviceStatus = array();
@@ -192,7 +193,8 @@ class TestExecutor
 
                 // Execute test
                 $this->start($test->getTitle());
-                $rc = $test->execute($this, $testDescriptor['options']);
+                $options = $testDescriptor['options'] ?? array(); 
+                $rc = $test->execute($this, $options);
                 $this->finish($rc);
                 if ($rc !== true) {
                     return 1;

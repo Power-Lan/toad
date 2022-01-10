@@ -5,12 +5,11 @@ use Toad;
 
 class TTN extends Toad\Network
 {
-  use TTN\Application,
-      TTN\ApplicationManagement;
+  use TTN\Application;
 
   private $region = '';
 
-  public function __construct(Toad\TestExecutor $context, string $region = 'eu')
+  public function __construct(Toad\TestExecutor $context, string $region = 'eu1')
   {
     parent::__construct($context);
     $this->setRegion($region);
@@ -23,13 +22,13 @@ class TTN extends Toad\Network
 
   protected function getHost()
   {
-    return sprintf("http://%s.thethings.network:8084", $this->region);
+    return sprintf("%s.cloud.thethings.network", $this->region);
   }
 
   public function setAccessKey(string $key)
   {
     $this->setHeaders([
-      'Authorization' => 'Key ' . $key
+      'Authorization' => 'Bearer ' . $key
     ]);
   }
 }

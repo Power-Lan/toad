@@ -12,6 +12,33 @@ class ACM
     if ($this->fd === false) {
       throw new Exception("Can not open $device");
     }
+
+    stream_set_blocking($this->fd, 0);
+  }
+
+  function __destruct()
+  {
+    fclose($this->fd);
+  }
+
+  function readAll() : string
+  {
+    $out = '';
+
+    while (true) {
+      if (feof($this->fd)) {
+        break;
+      }
+
+      $chunk = fread($this->fd, 8192);
+      if ($chunk === '') {
+        break;
+      }
+
+      $out .= $chunk;
+    }
+
+    return $out;
   }
 
   static public function scan()

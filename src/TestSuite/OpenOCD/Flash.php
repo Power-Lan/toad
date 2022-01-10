@@ -29,7 +29,7 @@ class Flash implements Toad\TestSuiteInterface
           $openocd = $context->getBin('openocd');
           $rc = $context->execute("$openocd flash $firmware");
           if ($rc !== 0) {
-            $context->info('openocd: post-command command failed');
+            $context->info('openocd: flash command failed');
             return false;
           }
         }

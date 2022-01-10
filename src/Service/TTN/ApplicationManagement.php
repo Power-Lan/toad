@@ -8,21 +8,28 @@ namespace Toad\Service\TTN;
 
 trait ApplicationManagement
 {
-  public function registerApplication(string $applicationId)
+/*
+  public function registerApplication(string $userId, string $applicationId)
   {
     $payload = [
-      'app_id' => $applicationId
+      'application' => array(
+        'ids' => $applicationId,
+      )
     ];
-    return $this->postJson($this->getHost() . "/applications", $payload);
+    return $this->postJson($this->getHost() . "/api/v3/users/$userId/applications", $payload);
   }
 
   public function deleteApplication(string $applicationId)
   {
-    return $this->delete($this->getHost() . "/applications/$applicationId");
+    $payload = [
+      'application_id' => $applicationId
+    ];
+    return $this->delete($this->getHost() . "/api/v3/applications/$applicationId", $payload);
   }
+*/
 
   public function getApplication(string $applicationId)
   {
-    return $this->getJson($this->getHost() . "/applications/$applicationId");
+    return $this->getJson('https://' . $this->getHost() . "/api/v3/applications/$applicationId");
   }
 }
