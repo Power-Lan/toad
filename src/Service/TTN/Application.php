@@ -30,6 +30,12 @@ trait Application
     return $this->getJson($url);
   }
 
+  public function getNsDevice($devId)
+  {
+    $url = sprintf('https://%s/api/v3/applications/%s/devices/%s?field_mask=session.dev_addr', $this->getHost(), $this->applicationId, $devId);
+    return $this->getJson($url);
+  }
+  
   public function deleteDevice($devId)
   {
     $url = sprintf('https://%s/api/v3/applications/%s/devices/%s', $this->getHost(), $this->applicationId, $devId);
